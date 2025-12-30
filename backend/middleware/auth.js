@@ -4,7 +4,7 @@ const User = require('../models/User');
 const protect = async (req, res, next) => {
   let token;
 
-  // Fixed logic - check if authorization header exists and starts with Bearer
+  // Check if authorization header exists and starts with Bearer
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
   }
@@ -25,6 +25,15 @@ const protect = async (req, res, next) => {
       return res.status(401).json({
         success: false,
         message: 'User not found'
+      });
+    }
+
+    // ✅ CHECK IF USER IS DEACTIVATED (NEW CODE)
+    if (req.user.status === 'inactive') {
+      return res.status(403).json({
+        success: false,
+        message: 'Your account has been deactivated. Please contact administrator.',
+        reason: 'ACCOUNT_DEACTIVATED'
       });
     }
     

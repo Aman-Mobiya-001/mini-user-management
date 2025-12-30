@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import Navbar from '../components/Navbar.jsx';
 import Button from '../components/Button.jsx';
 import Modal from '../components/Modal.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -69,7 +70,7 @@ const AdminDashboard = () => {
       <Navbar />
       
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold mb-6"> <FontAwesomeIcon icon="users" className="mr-3 text-blue-600" />Admin Dashboard</h1>
         
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="overflow-x-auto">
@@ -77,12 +78,15 @@ const AdminDashboard = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <FontAwesomeIcon icon="envelope" className="mr-2" />
                     Email
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <FontAwesomeIcon icon="user" className="mr-2" />
                     Full Name
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <FontAwesomeIcon icon="user-shield" className="mr-2" />
                     Role
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -123,6 +127,7 @@ const AdminDashboard = () => {
                           onClick={() => handleStatusChange(user, 'deactivate')}
                           className="text-xs"
                         >
+                          <FontAwesomeIcon icon="ban" className="mr-2" />
                           Deactivate
                         </Button>
                       ) : (
@@ -131,6 +136,7 @@ const AdminDashboard = () => {
                           onClick={() => handleStatusChange(user, 'activate')}
                           className="text-xs"
                         >
+                          <FontAwesomeIcon icon="check-circle" className="mr-2" />
                           Activate
                         </Button>
                       )}
@@ -149,6 +155,7 @@ const AdminDashboard = () => {
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
               >
+                <FontAwesomeIcon icon="chevron-left" className="mr-1" />
                 Previous
               </Button>
               <Button
@@ -157,6 +164,7 @@ const AdminDashboard = () => {
                 disabled={currentPage === totalPages}
               >
                 Next
+                <FontAwesomeIcon icon="chevron-right" className="ml-1" />
               </Button>
             </div>
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">

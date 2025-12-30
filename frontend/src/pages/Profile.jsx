@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 import Navbar from '../components/Navbar.jsx';
 import Input from '../components/Input.jsx';
 import Button from '../components/Button.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const Profile = () => {
   const { user, updateUser } = useAuth();
@@ -127,11 +129,11 @@ const Profile = () => {
       <Navbar />
       
       <div className="container mx-auto px-4 py-8 max-w-2xl">
-        <h1 className="text-3xl font-bold mb-6">My Profile</h1>
+        <h1 className="text-3xl font-bold mb-6"> <FontAwesomeIcon icon="user-circle" className="mr-3 text-blue-600" />My Profile</h1>
         
         {/* Profile Information */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h2 className="text-xl font-semibold mb-4">Profile Information</h2>
+          <h2 className="text-xl font-semibold mb-4"><FontAwesomeIcon icon="user" className="mr-2 text-blue-600" />Profile Information</h2>
           
           {!isEditing ? (
             <div>
@@ -172,12 +174,13 @@ const Profile = () => {
               />
               
               <div className="flex space-x-3">
-                <Button type="submit" loading={loading}>
+                <Button type="submit" loading={loading} icon="save">
                   Save Changes
                 </Button>
                 <Button
                   type="button"
                   variant="secondary"
+                  icon="times"
                   onClick={() => {
                     setIsEditing(false);
                     setFormData({
@@ -186,6 +189,7 @@ const Profile = () => {
                     });
                     setErrors({});
                   }}
+                  
                 >
                   Cancel
                 </Button>
@@ -196,7 +200,7 @@ const Profile = () => {
         
         {/* Change Password */}
         <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Change Password</h2>
+          <h2 className="text-xl font-semibold mb-4"><FontAwesomeIcon icon="key" className="mr-2 text-blue-600" />Change Password</h2>
           
           <form onSubmit={handlePasswordChange}>
             <Input
