@@ -88,3 +88,11 @@ exports.login = async (req, res) => {
     errorHandler(error, req, res);
   }
 };
+
+exports.logout = async (req, res) => {
+  res.status(200).json({ 
+    success: true, 
+    message: 'Logged out successfully' 
+  });
+};
+

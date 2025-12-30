@@ -1,7 +1,6 @@
 const errorHandler = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
-
   console.error(err.stack);
 
   if (err.name === 'ValidationError') {
@@ -9,6 +8,12 @@ const errorHandler = (err, req, res, next) => {
     error = {
       success: false,
       message: message.join(', '),
+      statusCode: 400
+    };
+  } else if (err.code === 11000) {
+    error = {
+      success: false,
+      message: 'Email already exists',
       statusCode: 400
     };
   }

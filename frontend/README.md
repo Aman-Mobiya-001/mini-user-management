@@ -1,37 +1,16 @@
-# Mini User Management System
+# React + Vite
 
-## Tech Stack
-- **Backend**: Node.js, Express.js, MongoDB, JWT, bcrypt
-- **Frontend**: React (Hooks), Bootstrap, React Router
-- **Deployment**: Render (Backend), Vercel (Frontend), MongoDB Atlas
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Live Links
-- Frontend: https://your-frontend.vercel.app
-- Backend API: https://your-backend.onrender.com/api
-- Database: MongoDB Atlas
+Currently, two official plugins are available:
 
-## Setup Instructions
-### Backend
-cd backend
-npm install
-cp .env.example .env
-npm run dev
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Frontend
-cd frontend
-npm install
-npm start
+## React Compiler
 
-## Environment Variables
-MONGO_URI=your_mongodb_atlas_connection_string
-JWT_SECRET=your-super-secret-key-min-32-chars
-PORT=5000
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## API Endpoints
-POST /api/auth/register
-POST /api/auth/login
-GET /api/users/me
-PUT /api/users/me
-PUT /api/users/me/password
-GET /api/users (admin)
-PATCH /api/users/:id/status (admin)
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
