@@ -19,7 +19,9 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
   'https://mini-user-management2.onrender.com/',
+  'https://mini-user-management.onrender.com/api',
   'https://mini-user-management.vercel.app/',
+  '*',
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
