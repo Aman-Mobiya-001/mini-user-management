@@ -14,37 +14,10 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log(' MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
-// FIXED CORS Configuration
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  'https://mini-user-management.vercel.app',
-  'https://mini-user-management.onrender.com',
-  'https://mini-user-management2.onrender.com',       
-  process.env.FRONTEND_URL
-].filter(Boolean);
-
-console.log(' Allowed origins:', allowedOrigins);
-
+// TEMPORARY FIX - ALLOW ALL ORIGINS (TESTING ONLY)
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (Postman, curl)
-    if (!origin) return callback(null, true);
-    
-    console.log('🔍 Checking origin:', origin);
-    
-    if (allowedOrigins.includes(origin)) {
-      console.log('CORS allowed for:', origin);
-      callback(null, true);
-    } else {
-      console.log(` Blocked by CORS: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],  // Fixed - no wildcard
-  optionsSuccessStatus: 200
+  origin: true, 
+  credentials: true
 }));
 
 // Middleware
