@@ -64,7 +64,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log('='.repeat(60));
   console.log(`Server running on port ${PORT}`);
-  console.log(`Allowed origins:`, allowedOrigins);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log('='.repeat(60));
 });
