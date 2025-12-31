@@ -27,11 +27,6 @@ Icons: Font Awesome
 
 - **Deployment**: Render (Backend), Vercel (Frontend), MongoDB Atlas
 
-## Live Links
-- Frontend: https://mini-user-management.vercel.app/
-- Backend API: https://mini-user-management.onrender.com/
-- Database: MongoDB Atlas
-
 ## Setup Instructions
 ### Backend
 # 1. Navigate to backend directory
@@ -120,4 +115,156 @@ Security Features
     CORS configuration
     Environment variables for secrets
     Deactivated users cannot login
+
+# API Request/Response Examples
+
+# Signup
+
+Request:
+
+POST /api/auth/signup
+Content-Type: application/json
+
+{
+  "fullName": "John Doe",
+  "email": "john@example.com",
+  "password": "Test@123"
+}
+
+Response:
+
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "64f8a1234567890abcdef123",
+    "fullName": "John Doe",
+    "email": "john@example.com",
+    "role": "user",
+    "status": "active"
+  }
+}
+
+# Login
+
+Request:
+
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Admin@123"
+}
+
+Response:
+
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "64f8a1234567890abcdef123",
+    "fullName": "Admin User",
+    "email": "admin@example.com",
+    "role": "admin",
+    "status": "active"
+  }
+}
+
+# Get All Users (Admin)
+
+GET /api/users?page=1&limit=10
+Authorization: Bearer <token>
+
+Response:
+
+{
+  "success": true,
+  "users": [
+    {
+      "_id": "64f8a1234567890abcdef123",
+      "fullName": "John Doe",
+      "email": "john@example.com",
+      "role": "user",
+      "status": "active",
+      "createdAt": "2025-12-30T10:00:00.000Z"
+    }
+  ],
+  "total": 50,
+  "totalPages": 5,
+  "currentPage": 1
+}
+
+# Update User Status (Admin)
+Request:
+
+PATCH /api/users/64f8a1234567890abcdef123/status
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "status": "inactive"
+}
+
+# Response:
+
+{
+  "success": true,
+  "user": {
+    "_id": "64f8a1234567890abcdef123",
+    "fullName": "John Doe",
+    "email": "john@example.com",
+    "role": "user",
+    "status": "inactive"
+  }
+}
+
+# Deployment
+
+Deploy Backend to Render
+Create account on Render
+
+Create new Web Service
+
+Connect GitHub repository
+
+Configure:
+
+Build Command: npm install
+
+Start Command: node server.js
+
+Environment Variables:
+    NODE_ENV=production
+    MONGO_URI=<your_mongodb_atlas_uri>
+    JWT_SECRET=<your_secret_key>
+    FRONTEND_URL=https://mini-user-management.vercel.app
+
+# Deploy Frontend to Vercel
+
+via Vercel Dashboard:
+
+Import GitHub repository
+
+Framework: Vite
+
+Root Directory: frontend
+
+Add Environment Variable: VITE_API_BASE_URL
+
+Deploy
+
+# MongoDB Atlas Setup
+Create cluster on MongoDB Atlas
+
+Create database user
+
+Whitelist IP: 0.0.0.0/0 (allow from anywhere)
+
+Get connection string
+
+Add to backend .env
+
+
+
 
