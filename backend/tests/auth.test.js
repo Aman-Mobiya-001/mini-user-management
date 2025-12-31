@@ -7,9 +7,9 @@ describe('Auth Tests', () => {
     await User.deleteMany({});
   });
 
-  test('POST /api/auth/register - success', async () => {
+  test('POST /api/auth/signup - success', async () => {
     const res = await request(app)
-      .post('/api/auth/register')
+      .post('/api/auth/signup')
       .send({
         fullName: 'Test User',
         email: 'test@example.com',
@@ -19,9 +19,9 @@ describe('Auth Tests', () => {
     expect(res.body.success).toBe(true);
   });
 
-  test('POST /api/auth/register - email exists', async () => {
+  test('POST /api/auth/signup - email exists', async () => {
     await request(app)
-      .post('/api/auth/register')
+      .post('/api/auth/signup')
       .send({
         fullName: 'Test User',
         email: 'test@example.com',
@@ -29,7 +29,7 @@ describe('Auth Tests', () => {
       });
     
     const res = await request(app)
-      .post('/api/auth/register')
+      .post('/api/auth/signup')
       .send({
         fullName: 'Test User 2',
         email: 'test@example.com',
